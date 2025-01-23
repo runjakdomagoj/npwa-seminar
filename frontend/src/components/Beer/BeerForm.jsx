@@ -27,7 +27,6 @@ export function BeerForm() {
           alcoholPercentage: data.alcoholPercentage,
           imageUrl: data.imageUrl,
           manufacturer: data.manufacturer,
-          //ingredients: data.ingredients.split(","),
         },
         token
       );
@@ -42,7 +41,6 @@ export function BeerForm() {
           alcoholPercentage: data.alcoholPercentage,
           imageUrl: data.imageUrl,
           manufacturer: data.manufacturer,
-          //ingredients: data.ingredients.split(","),
         },
         token
       );
@@ -168,6 +166,7 @@ export function BeerForm() {
         <input
           className="bg-blue-500 p-2 font-medium text-white upercase"
           type="submit"
+          value="Submit"
         />
       </form>
     </div>
