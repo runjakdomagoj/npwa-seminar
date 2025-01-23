@@ -31,12 +31,12 @@ export function NavigationBar() {
           </button>
         </div>
 
-        <button
+        {token && <button
           className="px-5 py-2 text-white font-medium uppercase"
           onClick={logOut}
         >
           Log out
-        </button>
+        </button>}
       </div>
 
       <div className="absolute bottom-1 right-4">

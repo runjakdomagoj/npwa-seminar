@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useUserContext } from "../../context/useContext";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const {
@@ -9,6 +10,8 @@ export function Login() {
     formState: { errors },
   } = useForm();
   const { setUserSession } = useUserContext();
+  const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     const response = await axios.post("http://localhost:5001/users/login", {
       userName: data.userName,
@@ -16,6 +19,10 @@ export function Login() {
     });
     console.log(response);
     setUserSession(response.data);
+  };
+
+  const handleSignUpRedirect = () => {
+    navigate("/signup");
   };
 
   return (
@@ -51,11 +58,21 @@ export function Login() {
         </div>
 
         <input
-          className="bg-blue-500 p-2 font-medium text-white upercase"
+          className="bg-blue-500 p-2 font-medium text-white uppercase"
           type="submit"
           value="Submit"
         />
       </form>
+
+      <div className="mt-6 text-center">
+        <p className="text-gray-600 text-sm">Don't have an account?</p>
+        <button
+          className="font-semibold text-md"
+          onClick={handleSignUpRedirect}
+        >
+          Create Your Account
+        </button>
+      </div>
     </div>
   );
 }

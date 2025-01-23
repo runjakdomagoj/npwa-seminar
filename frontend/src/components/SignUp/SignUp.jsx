@@ -89,6 +89,7 @@ export function SignUp() {
         <input
           className="bg-blue-500 p-2 font-medium text-white upercase"
           type="submit"
+          value="Submit"
         />
       </form>
     </div>
