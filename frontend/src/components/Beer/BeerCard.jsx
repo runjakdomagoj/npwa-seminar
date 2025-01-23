@@ -9,7 +9,7 @@ export function BeerCard({
   return (
     <button
       onClick={onSelectBeer}
-      className={`w-64 max-w-64 min-w-64 p-5 mr-2 mb-2 space-y-5 rounded-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200 ${isSelected && "bg-slate-200"}`}
+      className={`w-64 max-w-64 min-w-64 p-5 mr-2 mb-2 space-y-5 rounded-lg hover:cursor-pointer hover:bg-slate-200 ${isSelected && "bg-slate-200"}`}
     >
       <img className="w-full block" src={imageUrl} alt="Beer image" />
       <div className="flex-col">

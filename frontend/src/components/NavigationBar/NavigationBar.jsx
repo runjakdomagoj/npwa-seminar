@@ -3,8 +3,8 @@ import { useUserContext } from "../../context/useContext";
 
 export function NavigationBar() {
   const { logOut, token } = useUserContext();
-
   const navigate = useNavigate();
+
   function handleBeers() {
     navigate(`/beers`);
   }
@@ -14,40 +14,42 @@ export function NavigationBar() {
 
   return (
     <div>
-      <button
-        className={`px-5 py-2 fixed top-3 left-3 text-white font-medium rounded-md uppercase bg-amber-500`}
-        onClick={handleManufacturers}
-      >
-        Manufacturers
-      </button>
+      <div className="flex justify-between items-center px-8 py-4 bg-blue-500 shadow-md">
+        <div className="flex space-x-4">
+          <button
+            className="px-5 py-2 text-white font-medium  uppercase transition"
+            onClick={handleManufacturers}
+          >
+            Manufacturers
+          </button>
 
-      <button
-        className={`px-5 py-2 fixed top-3 right-3 text-white font-medium rounded-md uppercase bg-amber-500`}
-        onClick={handleBeers}
-      >
-        Beers
-      </button>
+          <button
+            className="px-5 py-2 text-white font-medium uppercase"
+            onClick={handleBeers}
+          >
+            Beers
+          </button>
+        </div>
 
-      {!token ? (
-        <p
-          className={`px-5 py-2 fixed bottom-3 left-3  font-bold rounded-md uppercase text-red-500`}
+        <button
+          className="px-5 py-2 text-white font-medium uppercase"
+          onClick={logOut}
         >
-          Currently logged out
-        </p>
-      ) : (
-        <p
-          className={`px-5 py-2 fixed bottom-3 left-3  font-bold rounded-md uppercase text-green-500`}
-        >
-          Currently logged in
-        </p>
-      )}
+          Log out
+        </button>
+      </div>
 
-      <button
-        className={`px-5 py-2 fixed bottom-3 right-3 text-white font-medium rounded-md uppercase bg-amber-500`}
-        onClick={() => logOut()}
-      >
-        Log out
-      </button>
+      <div className="absolute bottom-1 right-4">
+        {!token ? (
+          <p className="p-2 font-bold  uppercase text-red-500 shadow-md">
+            Logged out
+          </p>
+        ) : (
+          <p className="p-2 font-bold uppercase text-green-500 shadow-md">
+            Logged in
+          </p>
+        )}
+      </div>
     </div>
   );
 }

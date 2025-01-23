@@ -30,7 +30,7 @@ export function Login() {
           <label className="text-2xl">Username</label>
           <input
             autoComplete={"on"}
-            className="bg-slate-200 p-2"
+            className="bg-slate-100 p-2"
             {...register("userName", { required: true })}
           />
           {errors.userName && (
@@ -42,7 +42,7 @@ export function Login() {
           <label className="text-2xl">Password</label>
           <input
             type="password"
-            className="bg-slate-200 p-2"
+            className="bg-slate-100 p-2"
             {...register("password", { required: true })}
           />
           {errors.password && (
@@ -53,6 +53,7 @@ export function Login() {
         <input
           className="bg-blue-500 p-2 font-medium text-white upercase"
           type="submit"
+          value="Submit"
         />
       </form>
     </div>
