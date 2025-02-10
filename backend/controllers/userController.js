@@ -88,8 +88,38 @@ const logInUser = async (request, response) => {
   }
 };
 
+const changeUserPassword = async (request, response) => {
+  const userName = request.params.userName;
+  const password = request.body.password;
+  const newPassword = request.body.newPassword;
+  try {
+    if (response.locals.user.userName != userName)
+      throw new Error("You are not logged in with this username.");
+
+    const existingUser = await userRepo.getUserByUserName(userName);
+    if (!bcrypt.compareSync(password, existingUser.password))
+      throw new Error("Password is wrong");
+    await userRepo.updatePasswordByUsername(userName, newPassword)
+    return response.json("Password changed.")
+
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      let validationErrors = "";
+      for (const field in error.errors) {
+        validationErrors += error.errors[field].message;
+      }
+      console.log(`Validation errors in changeUserPassword: ${validationErrors}`);
+      return response.json(
+        `Validation errors in changeUserPassword: ${validationErrors}`
+      );
+    }
+    return response.json(`Error in changeUserPassword: ` + error.message);
+  }
+};
+
 export default {
   getAllUsers,
   signUpUser,
   logInUser,
+  changeUserPassword
 };

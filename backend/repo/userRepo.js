@@ -49,10 +49,17 @@ async function getPasswordHash(password, saltRounds) {
   return await bcrypt.hash(password, saltRounds);
 }
 
+async function updatePasswordByUsername(userName, userPassword) {
+  const hashedPassword = await getPasswordHash(userPassword, 2)
+  const password = await User.findOneAndUpdate({ userName: userName },{ password: hashedPassword });
+  return password;
+}
+
 export default {
   getAllUsers,
   getUserByUserName,
   createUser,
   createJwtToken,
   getPasswordHash,
+  updatePasswordByUsername
 };
