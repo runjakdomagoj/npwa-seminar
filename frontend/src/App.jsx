@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ManufacturerForm } from "./components/Manufacturer/ManufacturerForm";
 import { NavigationBar } from "./components/NavigationBar/NavigationBar";
 import { useUserContext } from "./context/useContext";
+import { UserList } from "./components/User/UserList";
+import { UserDetails } from "./components/User/UserDetails";
+import { UserForm } from "./components/User/UserForm";
 
 function App() {
   const { role } = useUserContext();
@@ -82,6 +85,30 @@ function App() {
             element={
               <ProtectedRoute>
                 {role === "admin" && <ManufacturerForm />}
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute>
+                <UserList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users/:userId/"
+            element={
+              <ProtectedRoute>
+                <UserDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users/:userId/update"
+            element={
+              <ProtectedRoute>
+                <UserForm />
               </ProtectedRoute>
             }
           />
