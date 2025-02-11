@@ -34,8 +34,8 @@ export function UserList() {
               key={user._id}
               id={user._id}
               userName={user.userName}
-              email={user.emaail}
-              role={user.role}
+              email={user.email}
+              userRole={user.role}
               onDetails={() => handleDetails(user._id)}
               onUpdate={() => handleUpdate(user._id)}
             />
