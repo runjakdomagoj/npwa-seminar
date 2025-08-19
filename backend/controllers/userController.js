@@ -88,8 +88,18 @@ const logInUser = async (request, response) => {
   }
 };
 
+const getAllNonAdminUsers = async (request, response) => {
+  try {
+    const users = await userRepo.getAllNonAdminUsers();
+    return response.json(users);
+  } catch (error) {
+    return response.json(`Error in getting non-admin users: ${error}`);
+  }
+};
+
 export default {
   getAllUsers,
   signUpUser,
   logInUser,
+  getAllNonAdminUsers
 };

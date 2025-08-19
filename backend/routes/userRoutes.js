@@ -31,4 +31,7 @@ router.post(
   userController.logInUser
 );
 
+// Get all users that are not admins
+router.get("/non-admins", userController.getAllNonAdminUsers);
+
 export default router;

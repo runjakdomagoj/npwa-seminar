@@ -49,10 +49,16 @@ async function getPasswordHash(password, saltRounds) {
   return await bcrypt.hash(password, saltRounds);
 }
 
+async function getAllNonAdminUsers() {
+  const users = await User.find({ role: "user" });
+  return users;
+}
+
 export default {
   getAllUsers,
   getUserByUserName,
   createUser,
   createJwtToken,
   getPasswordHash,
+  getAllNonAdminUsers,
 };
