@@ -2,7 +2,7 @@ import React from "react";
 export function UserCard({
   userName,
   email,
-  userRole,
+  role,
 }) {
   return (
     <div className="w-96 max-w-96 min-w-96 p-5 mr-2 mb-2 space-y-5 rounded-lg bg-white shadow-md hover:cursor-pointer hover:bg-slate-200">
@@ -16,7 +16,7 @@ export function UserCard({
           {email}
         </p>
         <p className="w-fit text-clip overflow-hidden text-sm text-nowrap flex-auto text-gray-400">
-          {userRole}
+          {role}
         </p>
       </div>
     </div>
