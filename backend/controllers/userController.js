@@ -88,8 +88,33 @@ const logInUser = async (request, response) => {
   }
 };
 
+const getYourProfile = async (request, response) => {
+  try {
+    const userName = response.locals.user.userName; // iz tokena
+    const user = await userRepo.getUserByUserName(userName);
+
+    if (!user) {
+      return response.status(404).json({ message: "User not found" });
+    }
+
+    return response.json({
+      userName: user.userName,
+      email: user.email,
+      role: user.role,
+    });
+  } catch (error) {
+    response
+      .status(500)
+      .json({
+        message: "Error while getting your profile",
+        error: error.message,
+      });
+  }
+};
+
 export default {
   getAllUsers,
   signUpUser,
   logInUser,
+  getYourProfile,
 };

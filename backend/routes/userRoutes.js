@@ -2,6 +2,7 @@ import express, { response } from "express";
 const router = express.Router();
 import userController from "../controllers/userController.js";
 import validation from "../middlewares/validation.js";
+import checkJwt from "../middlewares/validateJwtToken.js";
 import Joi from "joi";
 
 // Get all
@@ -30,5 +31,8 @@ router.post(
   }),
   userController.logInUser
 );
+
+// Get your profile
+router.get("/profile", checkJwt, userController.getYourProfile);
 
 export default router;
