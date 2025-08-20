@@ -7,6 +7,11 @@ async function getAllUsers() {
   return users;
 }
 
+async function getAdminUsers() {
+  const users = await User.find({role: "admin"});
+  return users;
+}
+
 async function getUserByUserName(userName) {
   const user = await User.findOne({ userName });
   return user;
@@ -51,6 +56,7 @@ async function getPasswordHash(password, saltRounds) {
 
 export default {
   getAllUsers,
+  getAdminUsers,
   getUserByUserName,
   createUser,
   createJwtToken,

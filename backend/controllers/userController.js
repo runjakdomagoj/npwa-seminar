@@ -13,6 +13,15 @@ const getAllUsers = async (request, response) => {
   }
 };
 
+const getAdminUsers = async (request, response) => {
+  try {
+    const users = await userRepo.getAdminUsers();
+    return response.json(users);
+  } catch (error) {
+    return response.json(`Error in getting admin users: ${error}`);
+  }
+};
+
 const signUpUser = async (request, response) => {
   const userData = request.body;
   try {
@@ -90,6 +99,7 @@ const logInUser = async (request, response) => {
 
 export default {
   getAllUsers,
+  getAdminUsers,
   signUpUser,
   logInUser,
 };

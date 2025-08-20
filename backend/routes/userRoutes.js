@@ -7,6 +7,9 @@ import Joi from "joi";
 // Get all
 router.get("/", userController.getAllUsers);
 
+// Get admins
+router.get("/admin-users", userController.getAdminUsers);
+
 // Sign up
 router.post(
   "/signup",
