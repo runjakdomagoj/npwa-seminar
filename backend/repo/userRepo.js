@@ -49,10 +49,16 @@ async function getPasswordHash(password, saltRounds) {
   return await bcrypt.hash(password, saltRounds);
 }
 
+async function deleteUser(id) {
+  const deletedUser = await User.findByIdAndDelete(id);
+  return deletedUser;
+}
+
 export default {
   getAllUsers,
   getUserByUserName,
   createUser,
   createJwtToken,
   getPasswordHash,
+  deleteUser,
 };

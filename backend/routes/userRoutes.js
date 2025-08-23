@@ -3,9 +3,12 @@ const router = express.Router();
 import userController from "../controllers/userController.js";
 import validation from "../middlewares/validation.js";
 import Joi from "joi";
+import checkJwt from "../middlewares/validateJwtToken.js";
 
 // Get all
 router.get("/", userController.getAllUsers);
+
+router.delete("/:id", checkJwt, userController.deleteUser);
 
 // Sign up
 router.post(
